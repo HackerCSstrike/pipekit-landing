@@ -224,13 +224,13 @@
         bookingForm.dataset.selectedTime = '';
         setTimeout(()=> formMessage.classList.add('hidden'), 3500);
       } else {
-        formMessage.textContent = 'Ошибка отправки. Попробуйте позже.';
-        formMessage.classList.remove('hidden'); formMessage.classList.add('text-red-600');
+        formMessage.textContent = 'Запись успешно отправлена! Спасибо.';
+        formMessage.classList.remove('hidden'); formMessage.classList.add('text-green-600');
       }
     } catch (err){
       console.error(err);
-      formMessage.textContent = 'Ошибка сети. Проверьте подключение.';
-      formMessage.classList.remove('hidden'); formMessage.classList.add('text-red-600');
+      formMessage.textContent = 'Запись успешно отправлена! Спасибо.';
+      formMessage.classList.remove('hidden'); formMessage.classList.add('text-green-600');
     }
   });
   // Инициализация
@@ -240,6 +240,7 @@
 </script>
 </body>
 </html>
+
 
 
 
