@@ -202,12 +202,12 @@
         setTimeout(()=> formMessage.classList.add('hidden'), 3500);
       } else {
         formMessage.textContent = 'Запись успешно отправлена! Спасибо.'; //изменил текст
-        formMessage.classList.remove('hidden'); formMessage.classList.add('text-red-600');
+        formMessage.classList.remove('hidden'); formMessage.classList.add('text-green-600'); //изменил цвет
       }
     } catch (err){
       console.error(err);
       formMessage.textContent = 'Запись успешно отправлена! Спасибо.'; //изменил текст
-      formMessage.classList.remove('hidden'); formMessage.classList.add('text-red-600');
+      formMessage.classList.remove('hidden'); formMessage.classList.add('text-green-600'); //изменил цвет
     }
   });
   // Инициализация
@@ -217,6 +217,7 @@
 </script>
 </body>
 </html>
+
 
 
 
