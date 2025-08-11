@@ -37,6 +37,23 @@
 
   <main class="container mx-auto px-4 md:px-8 py-8">
     <section class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-6 md:p-8">
+        <!-- Карточка мастера -->
+        <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
+          <img src="master.jpg" alt="Анна Волкова" class="w-32 h-32 object-cover rounded-full shadow-lg border-4 border-violet-200">
+          <div>
+            <h2 class="font-bounded text-3xl">Анна Волкова</h2>
+            <p class="text-gray-500 mt-1">Мастер маникюра и педикюра</p>
+            <div class="mt-3 space-y-1">
+              <p class="flex items-center gap-2"><span class="font-bold">Тел.:</span> <a href="tel:+79999999999" class="text-violet-600 hover:underline">+7 999 999-99-99</a></p>
+              <p class="flex items-center gap-2"><span class="font-bold">Telegram:</span> <a href="https://t.me/yourusername" class="text-violet-600 hover:underline">@yourusername</a></p>
+              <p class="flex items-center gap-2"><span class="font-bold">Instagram:</span> <a href="https://instagram.com/yourpage" class="text-violet-600 hover:underline">@yourpage</a></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="flex flex-col md:flex-row gap-6">
+          <!-- Здесь уже идёт календарь и форма, как у тебя -->
+      
       <div class="flex flex-col md:flex-row gap-6">
         <!-- Календарь -->
         <div class="w-full md:w-1/2">
@@ -89,7 +106,7 @@
 
 <script>
   // ==== Настройки ====
-  const APPS_SCRIPT_URL = 'a1149109.xsph.ru/public_html/send_telegram.php'; // <- замените
+  const APPS_SCRIPT_URL = 'https://твойдомен.ru/send_telegram.php'; // <- замените
   // храните в форме "secret" какое-нибудь значение и проверяйте его на стороне Apps Script для базовой защиты
 
   // === Календарь и слоты (как на главной) ===
@@ -207,13 +224,13 @@
         bookingForm.dataset.selectedTime = '';
         setTimeout(()=> formMessage.classList.add('hidden'), 3500);
       } else {
-        formMessage.textContent = 'Запись успешно отправлена! Спасибо.'; //изменил текст
-        formMessage.classList.remove('hidden'); formMessage.classList.add('text-green-600'); //изменил цвет
+        formMessage.textContent = 'Ошибка отправки. Попробуйте позже.';
+        formMessage.classList.remove('hidden'); formMessage.classList.add('text-red-600');
       }
     } catch (err){
       console.error(err);
-      formMessage.textContent = 'Запись успешно отправлена! Спасибо.'; //изменил текст
-      formMessage.classList.remove('hidden'); formMessage.classList.add('text-green-600'); //изменил цвет
+      formMessage.textContent = 'Ошибка сети. Проверьте подключение.';
+      formMessage.classList.remove('hidden'); formMessage.classList.add('text-red-600');
     }
   });
   // Инициализация
@@ -223,7 +240,6 @@
 </script>
 </body>
 </html>
-
 
 
 
