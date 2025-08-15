@@ -1,94 +1,150 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PipeKit - Создайте сайт для вашего бьюти-бизнеса</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bounded:wght@800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-    font-family: 'Inter', sans-serif;
-    background: url('fon3.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #3D3D3D;
-}
-
-        .font-bounded {
-            font-family: 'Bounded', sans-serif;
-            font-weight: 800;
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #8A2BE2, #FF69B4);
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PipeKit - Создайте сайт для вашего бьюти-бизнеса</title>
+      
+        <script src="https://cdn.tailwindcss.com"></script>
+      
+        <!-- Подключаем шрифты один раз -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bounded:wght@800&family=Inter:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      
+        <style>
+          /* Чтобы шрифты не задерживались при загрузке */
+          @import url('https://fonts.googleapis.com/css2?family=Bounded:wght@800&family=Inter:wght@400;500;700&display=swap&display=swap');
+      
+          body {
+            font-family: 'Inter', sans-serif !important;
+            color: #3d3d3d;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+          }
+      
+          /* Принудительно Bounded для заголовков и классов */
+          h1,
+          h2,
+          h3,
+          h4,
+          .font-bounded {
+            font-family: 'Bounded', sans-serif !important;
+            font-weight: 800 !important;
+          }
+      
+          /* Фон как отдельный слой */
+          body::before {
+            content: '';
+            position: fixed; /* остаётся на месте при скролле */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('fon3.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1; /* чтобы фон был за контентом */
+          }
+      
+          .gradient-text {
+            background: linear-gradient(90deg, #8a2be2, #ff69b4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        .cta-button {
+          }
+      
+          .cta-button {
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        .cta-button:hover {
+          }
+      
+          .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
-        }
-        .feature-card {
+          }
+      
+          .feature-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .feature-card:hover {
+          }
+      
+          .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-        .example-day {
+          }
+      
+          .example-day {
             transition: all 0.2s ease-in-out;
-        }
-        .example-day:not(.disabled):hover {
+          }
+      
+          .example-day:not(.disabled):hover {
             background-color: #f3e8ff;
             cursor: pointer;
-        }
-        .example-day.selected {
-            background-color: #8B5CF6;
+          }
+      
+          .example-day.selected {
+            background-color: #8b5cf6;
             color: white;
             border-radius: 9999px;
-        }
-        .example-day.disabled {
+          }
+      
+          .example-day.disabled {
             color: #d1d5db;
             cursor: not-allowed;
-        }
-        .time-slot {
+          }
+      
+          .time-slot {
             transition: all 0.2s ease-in-out;
-        }
-        .time-slot:not(.disabled):hover {
-            background-color: #8B5CF6;
+          }
+      
+          .time-slot:not(.disabled):hover {
+            background-color: #8b5cf6;
             color: white;
             cursor: pointer;
-        }
-        .time-slot.disabled {
+          }
+      
+          .time-slot.disabled {
             background-color: #f3f4f6;
             color: #d1d5db;
             cursor: not-allowed;
-        }
-        /* Improved responsiveness */
-        @media (max-width: 640px) {
+          }
+      
+          /* Адаптив календаря */
+          @media (max-width: 640px) {
             .grid-cols-7 {
-                font-size: 0.75rem;
+              font-size: 0.75rem;
             }
             .example-day {
-                padding: 0.5rem 0;
+              padding: 0.5rem 0;
             }
-            .grid-cols-3 {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            #time-slots {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-        }
-    </style>
-</head>
+          }
+      
+          /* Мелкие экраны */
+          @media (max-width: 480px) {
+            h2 {
+              font-size: 1.75rem;
+            }
+            p {
+              font-size: 0.95rem;
+            }
+            .cta-button {
+              padding: 0.7rem 1.5rem;
+              font-size: 1rem;
+            }
+          }
+        </style>
+      </head>      
 <body>
     <!-- Шапка сайта -->
     <header class="py-6 px-4 sm:px-6 lg:px-8">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="font-bounded text-2xl md:text-3xl text-gray-800">PipeKit</h1>
-            <a href="#pricing" class="bg-violet-500 text-white font-bold py-2 px-5 rounded-full hover:bg-violet-600 transition-colors">Начать</a>
+            <a href="auth.html?next=dashboard.html" class="bg-violet-500 text-white font-bold py-2 px-5 rounded-full hover:bg-violet-600 transition-colors">Начать</a>
         </div>
     </header>
 
@@ -102,8 +158,8 @@
                 PipeKit помогает мастерам маникюра, бровистам и другим специалистам бьюти-сферы легко получать записи от клиентов через персональный сайт-лендинг.
             </p>
             <div class="mt-10">
-                <a href="https://t.me/pipekitcrm" target="_blank" rel="noopener noreferrer" class="cta-button bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold py-4 px-10 rounded-full text-lg">
-                    Заказать свой сайт 
+                <a href="auth.html?next=dashboard.html" target="_blank" rel="noopener noreferrer" class="cta-button bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold py-4 px-10 rounded-full text-lg">
+                    Создать свой сайт
                 </a>                
             </div>
             <!-- Пример лендинга мастера -->
@@ -152,14 +208,14 @@
 
         <!-- Кнопка "Пример вашего сайта" -->
         <div class="mt-8 text-center">
-          <a
-            href="landing.html"
-            class="cta-button bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold py-4 px-10 rounded-full text-lg"
-            >Пример вашего сайта</a
-          >
+            <a
+              href="landing.html"
+              class="cta-button bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold py-4 px-10 rounded-full text-lg"
+              >Пример вашего сайта</a
+            >
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
         <!-- Преимущества -->
         <section id="features" class="py-20">
@@ -211,14 +267,47 @@
                     <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Неограниченное кол-во записей</li>
                     <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Управление расписанием</li>
                 </ul>
-                <a href="https://t.me/pipekitcrm" target="_blank" rel="noopener noreferrer" class="mt-10 block w-full text-center cta-button bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold py-4 px-10 rounded-full text-lg">
+                <a href="auth.html?next=dashboard.html" target="_blank" rel="noopener noreferrer" class="mt-10 block w-full text-center cta-button bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold py-4 px-10 rounded-full text-lg">
                     Заказать свой лендинг
                 </a>
-
+                
             </div>
         </section>
     </main>
-
+    <!-- Блок обязательной информации для платежей -->
+<section class="container mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="space-y-3">
+  
+      <details class="bg-white/40 backdrop-blur-sm rounded-lg shadow p-3 text-sm text-gray-700">
+        <summary class="cursor-pointer font-semibold">Товары и услуги</summary>
+        <p class="mt-2">Готовое решение для микробизнеса, а именно готовые лендинги для записи клиентов в микробизнесе и не только.</p>
+      </details>
+  
+      <details class="bg-white/40 backdrop-blur-sm rounded-lg shadow p-3 text-sm text-gray-700">
+        <summary class="cursor-pointer font-semibold">Доставка и получение</summary>
+        <p class="mt-2">Услуги оказываются на сайте pipekit.click.  
+        Лендинг как услуга после оплаты подписки и его настройку можно осуществить в личном кабинете пользователя.</p>
+      </details>
+  
+      <details class="bg-white/40 backdrop-blur-sm rounded-lg shadow p-3 text-sm text-gray-700">
+        <summary class="cursor-pointer font-semibold">Пользовательское соглашение</summary>
+        <p class="mt-2">Настоящим вы соглашаетесь с <a href="ofert.html" class="text-violet-600 underline">офертой</a> об условиях оказания услуг.</p>
+      </details>
+  
+      <details class="bg-white/40 backdrop-blur-sm rounded-lg shadow p-3 text-sm text-gray-700">
+        <summary class="cursor-pointer font-semibold">Контакты и реквизиты</summary>
+        <p class="mt-2">
+          Самозанятый Мингачев Иван Сергеевич<br>
+          ИНН: 63251637649<br>
+          Телефон: <a href="tel:+79999999999" class="text-violet-600">+7 999 999-99-99</a><br>
+          Email: <a href="mailto:info@pipekit.click" class="text-violet-600">info@pipekit.click</a><br>
+          Адрес: г. Самара, ул. Советская, 12
+        </p>
+      </details>
+  
+    </div>
+  </section>
+  
     <!-- Подвал -->
     <footer class="bg-gray-800 text-white mt-20">
         <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
@@ -348,10 +437,4 @@
         renderTimeSlots();
     </script>
 </body>
-
 </html>
-
-
-
-
-
